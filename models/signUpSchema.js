@@ -37,4 +37,4 @@ const signUpSchema = new Schema({
         required:true
     },
   })
-  module.exports =mongoose.model("registraion-datas",signUpSchema)
+  module.exports =mongoose.model("signupdatas",signUpSchema)
