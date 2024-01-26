@@ -1,5 +1,6 @@
 const express = require("express");
 const router=express.Router();
 const apiRouter =require('./api')
-router.use('/api/v1', apiRouter)
+const baseApi=process.env.BASE_URL
+router.use(baseApi, apiRouter)
 module.exports =router;

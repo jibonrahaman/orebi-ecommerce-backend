@@ -1,12 +1,13 @@
 const express =require("express");
+const app =express();
+app.use(express.json())
 const dbConnection = require("./dbConnection/dbConnect");
 const signUpSchema = require("./models/signUpSchema");
-const router = require("./routes");
-const app =express();
-const port =7000;
+require('dotenv').config()
 dbConnection();
-app.use(express.json())
-// app.use(router)
+const router = require("./routes");
+app.use(router)
+const port =7000;
 // app.post('/' , (req,res)=>{
 //     const {FirstName,LastName,EmailAdress,MobileNumber,PresentAdress,City,PostCode,Country,Region,Password}=req.body
 //     console.log(req.body);

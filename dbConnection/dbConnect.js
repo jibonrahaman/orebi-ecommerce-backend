@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
- 
+const dotenv = require('dotenv')
+
  function dbConnection (){
-    mongoose.connect("mongodb+srv://orebiecommerce:jibon123@cluster0.qxeww1u.mongodb.net/Orebi-E-Commerce?retryWrites=true&w=majority").then(()=>{
+    mongoose.connect(process.env.MONGODB_URL).then(()=>{
         console.log("database connected");
     })
  }
