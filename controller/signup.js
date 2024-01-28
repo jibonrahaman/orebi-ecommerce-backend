@@ -1,4 +1,5 @@
 const signUpSchema = require("../models/signUpSchema");
+const SendEmailVerify = require("../nodemailer/SendEmailVerify");
 
  function signup (req,res){
     const {FirstName,LastName,EmailAdress,MobileNumber,PresentAdress,City,PostCode,Country,Region,Password}=req.body
@@ -15,6 +16,7 @@ const signUpSchema = require("../models/signUpSchema");
             Region,
             Password
         })
+        SendEmailVerify(EmailAdress)
         signUpData.save();
         res.send(signUpData)
  }
