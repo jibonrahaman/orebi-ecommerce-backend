@@ -2,6 +2,7 @@ const { json } = require("express");
 const signUpSchema = require("../models/signUpSchema");
 const SendEmailVerify = require("../nodemailer/SendEmailVerify");
 const bcrypt = require('bcrypt');
+const emailRegex = require("../emailRegex/emailRegex");
  async function signup (req,res){
     const {Firstname,LastName,Email,MobileNumber,PresentAdress,City,PostCode,Country,Region,Password}=req.body
     
@@ -14,6 +15,9 @@ const bcrypt = require('bcrypt');
      
     if (!Email){
         return res.json("Email is required")
+     }
+     if (!emailRegex(Email)){
+        return res.json ("Email is not correct")
      }
     if (!MobileNumber){
         return res.json("MobileNumber is required")
