@@ -43,5 +43,10 @@ const signUpSchema = new Schema({
         type:String,
         required:true
     },
+    Verify:{
+      type : Boolean,
+      default :false
+
+    }
   })
   module.exports =mongoose.model("signupdatas",signUpSchema)
