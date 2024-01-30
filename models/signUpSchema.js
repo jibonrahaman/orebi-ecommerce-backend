@@ -2,9 +2,16 @@ const mongoose =require("mongoose");
 const {Schema} =mongoose;
 
 const signUpSchema = new Schema({
-    FirstName:String,
-    LastName:String,
-    EmailAdress:{
+   
+    Firstname:{
+        type:String,
+        required:true
+    }, 
+       LastName:{
+        type:String,
+        required:true
+    }, 
+     Email:{
         type:String,
         required:true
     },
