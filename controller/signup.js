@@ -3,6 +3,7 @@ const signUpSchema = require("../models/signUpSchema");
 const SendEmailVerify = require("../nodemailer/SendEmailVerify");
 const bcrypt = require('bcrypt');
 const emailRegex = require("../emailRegex/emailRegex");
+const emailVeryfiedTemplete = require("../helpers/emailVeryfiedTemplete");
  async function signup (req,res){
     const {Firstname,LastName,Email,MobileNumber,PresentAdress,City,PostCode,Country,Region,Password}=req.body
     
@@ -58,7 +59,7 @@ const emailRegex = require("../emailRegex/emailRegex");
                 Region,
                 Password:hash
             })
-            SendEmailVerify(Email)
+            SendEmailVerify(Email, emailVeryfiedTemplete)
             signUpData.save();
             res.send(signUpData)
         });
