@@ -4,7 +4,8 @@ const SendEmailVerify = require("../nodemailer/SendEmailVerify");
 const bcrypt = require('bcrypt');
 const emailRegex = require("../emailRegex/emailRegex");
 const emailVeryfiedTemplete = require("../helpers/emailVeryfiedTemplete");
- async function signup (req,res){
+var jwt = require('jsonwebtoken');
+async function signup (req,res){
     const {Firstname,LastName,Email,MobileNumber,PresentAdress,City,PostCode,Country,Region,Password}=req.body
     
     if (Firstname == " " || !Firstname){
@@ -41,10 +42,10 @@ const emailVeryfiedTemplete = require("../helpers/emailVeryfiedTemplete");
       if (!Password){
         return res.json("Password is required")
      }   
-     const existEmail = await signUpSchema.findOne({Email})
-     if (existEmail){
-        return res.send("email is already used")
-     }
+    //  const existEmail = await signUpSchema.findOne({Email})
+    //  if (existEmail){
+    //     return res.send("email is already used")
+    //  }
 
         bcrypt.hash(Password, 10, function(err, hash) {
             const signUpData=new signUpSchema({
@@ -59,7 +60,8 @@ const emailVeryfiedTemplete = require("../helpers/emailVeryfiedTemplete");
                 Region,
                 Password:hash
             })
-            SendEmailVerify(Email, emailVeryfiedTemplete)
+            var token = jwt.sign({ Email }, "suhashine");
+            SendEmailVerify(Email, emailVeryfiedTemplete (token))
             signUpData.save();
             res.send(signUpData)
         });
