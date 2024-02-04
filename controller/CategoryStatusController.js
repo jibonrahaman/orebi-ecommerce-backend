@@ -7,7 +7,7 @@ async function CategoryStatusController (req,res){
             {$set:{isActive:false,status:status}},
             {new:true}
         )
-        res.json(status)
+        res.json(updateCategoryStatus)
 
     }else if(status == 'approved'){
         const updateCategoryStatus = await CategorySchema.findOneAndUpdate(
@@ -15,7 +15,7 @@ async function CategoryStatusController (req,res){
             {$set:{isActive:true,status:status}},
             {new:true}
         )
-        res.json(status)
+        res.json(updateCategoryStatus)
     }
      
 
