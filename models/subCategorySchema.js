@@ -7,6 +7,13 @@ const subCategorySchema =new Schema({
         required:true
      },
      description:String,
+     subCategory:[
+        {
+        type:Schema.Types.ObjectId,
+        ref:'CategoryList'
+         }
+    ]
+     ,
      isActive:{
         type:Boolean,
         default:false

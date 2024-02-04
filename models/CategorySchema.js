@@ -7,6 +7,10 @@ const CategorySchema = new Schema ({
     required:true
  },
  description:String,
+ category:{
+  type:Schema.Types.ObjectId,
+  ref:"SubCategoryList"
+ },
  isActive:{
     type:Boolean,
     default:false
