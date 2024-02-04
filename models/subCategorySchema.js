@@ -2,19 +2,12 @@ const mongoose = require ("mongoose");
 const {Schema} =mongoose;
 
 const subCategorySchema =new Schema({
-    namae:{
+    name:{
         type:String,
         required:true
      },
-     description:String,
-     subCategory:[
-        {
-        type:Schema.Types.ObjectId,
-        ref:'CategoryList'
-         }
-    ]
-     ,
-     isActive:{
+     description:String,    
+     isActive:{ 
         type:Boolean,
         default:false
      },
@@ -23,6 +16,11 @@ const subCategorySchema =new Schema({
         default:"waiting",
         enum:['waiting','rejected','approved']
      },
+     subCategory:
+      {
+         type:Schema.Types.ObjectId,
+         ref:'CategoryList'
+      },
      created:{
         type:Date,
         default:new Date()
