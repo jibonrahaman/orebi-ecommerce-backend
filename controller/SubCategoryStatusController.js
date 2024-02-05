@@ -7,9 +7,16 @@ async function SubCategoryStatus (req,res){
         {name},
         {$set:{isActive:false,status:status}},
         {new:true}
+        
     )
-   }else if (status == "approved"){
-    const updateCategoryStatus = await subCategorySchema.findOneAndUpdate()
-   }
+    res.json(updateSubCategoryStatus)
+}else if (status == "approved"){
+    const updateSubCategoryStatus = await subCategorySchema.findOneAndUpdate(
+        {name},
+        {$set:{isActive:true,status:status}},
+        {new:true}
+        )
+        res.json(updateSubCategoryStatus)
+    }
 } 
 module.exports = SubCategoryStatus;
