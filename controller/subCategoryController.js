@@ -1,7 +1,7 @@
 const subCategorySchema = require("../models/subCategorySchema");
 
 async function subCategoryController (req,res){
-   const {name,description,subCategory} =req.body;
+   const {name,description,category} =req.body;
    try{
      const existsubCategory =await subCategorySchema.find({name})
     if(existsubCategory.length > 0){
@@ -10,7 +10,7 @@ async function subCategoryController (req,res){
         const SubCategory = new subCategorySchema({
             name,
             description,
-            subCategory
+            category
          })
          res.json({success:"Sub Category Created Successfully"});
          SubCategory.save();
