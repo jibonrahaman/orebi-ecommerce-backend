@@ -1,9 +1,11 @@
 const CategorySchema = require("../models/CategorySchema");
+const subCategorySchema = require("../models/subCategorySchema");
 
 async function getAllCategory(req, res) {
     try {
-        const getCategoryData = await CategorySchema.find({}).populate("subCategory")
-        res.json(getCategoryData); 
+        const getCategoryData = await CategorySchema.find({}).populate("subCategory")   
+        const getAllSubCategory = await subCategorySchema.find({});
+     res.json({CATEGORYS:getCategoryData,SUBCATEGORYS:getAllSubCategory})
     } catch (error) {
         // Handle error appropriately, maybe send an error response
         console.error("Error while fetching categories:", error);
