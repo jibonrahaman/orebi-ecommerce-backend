@@ -2,8 +2,7 @@ const CategorySchema = require("../models/CategorySchema");
 const subCategorySchema = require("../models/subCategorySchema");
 
 async function subCategoryController (req,res){
-
-
+   
    const {name,description,category} =req.body;
    try{
      const existsubCategory =await subCategorySchema.find({name})
