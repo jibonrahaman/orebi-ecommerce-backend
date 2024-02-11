@@ -42,10 +42,10 @@ async function signup (req,res){
       if (!Password){
         return res.json("Password is required")
      }   
-    //  const existEmail = await signUpSchema.findOne({Email})
-    //  if (existEmail){
-    //     return res.send("email is already used")
-    //  }
+   //   const existEmail = await signUpSchema.findOne({Email})
+   //   if (existEmail){
+   //      return res.send("email is already used")
+   //   }
 
         bcrypt.hash(Password, 10, function(err, hash) {
             const signUpData=new signUpSchema({

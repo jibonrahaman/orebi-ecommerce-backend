@@ -7,8 +7,7 @@ async function subCategoryController (req,res){
    try{
      const existsubCategory =await subCategorySchema.find({name})
      if(existsubCategory.length > 0){
-        res.json({error:"This SubCategory is already exist"});
-        
+        res.json({error:"This SubCategory is already exist"});        
      } 
         const SubCategory = new subCategorySchema({
             name,

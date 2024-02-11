@@ -23,10 +23,12 @@ const MerchantSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "signupdatas"
     },
-    product: {
-        type: Schema.Types.ObjectId,
-        ref: product
-    }
+    product: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "product"
+        }
+    ]
 
 
 })

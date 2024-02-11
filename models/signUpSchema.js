@@ -46,7 +46,7 @@ const signUpSchema = new Schema({
     Verify: {
         type: Boolean,
         default: false
-    },
+        },
     role: {
         type: String,
         default: "member",
