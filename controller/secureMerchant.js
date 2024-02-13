@@ -1,20 +1,30 @@
 const signUpSchema = require("../models/signUpSchema");
 
-function secureMerchant (req,res,next){
- const userId =  (req.headers.authorization.split('@')[1]);
- const userPass =  (req.headers.authorization.split('@')[2]);
-  
-  try{
-    if(!req.headers.authorization){
-        res.json({error: "Unauthorization"})
-    }else{
-        const user = signUpSchema.find({_id : userId})
-        console.log(user);
+async function secureMerchant(req, res, next) {
+    try {
+        const authHeader = req.headers.authorization;
+        const userId = authHeader.split('@')[1];
+        const userPass = authHeader.split('@')[2];
+
+        if (!authHeader) {
+            return res.status(401).json({ error: "Authorization header missing" });
+        }
+
+        const user =await signUpSchema.find({_id : userId});      
+        if (user.length > 0) {
+            if (user[0].role == 'merchant' && userPass == "6yniFSsNZ8iGg4t") {
+            return res.status(200).json({ success: "Done!" });
+            next();
+            }else{
+               return res.status(401)({error : 'Unauthorized'})
+            }
+        }else{
+          return res.status(401).json({ success: "User not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
-
-  }catch(error){
-    console.log(error);
-  }
-
 }
-module.exports = secureMerchant;
+
+module.exports = secureMerchant; 
