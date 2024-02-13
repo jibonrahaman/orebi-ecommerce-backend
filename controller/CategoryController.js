@@ -17,8 +17,6 @@ async function CategoryController(req, res) {
             // Save the category to the database
             category.save();
 
-          
-
         }
        
 
