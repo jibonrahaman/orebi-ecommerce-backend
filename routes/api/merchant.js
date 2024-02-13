@@ -1,8 +1,8 @@
 const express = require("express");
 const BecomeMerchant = require("../../controller/BecomeMerchant");
-const secureMerchant = require("../../controller/secureMerchant");
+const { productMidleware,productController } = require("../../controller/ProductCreated");
 const merchant = express();
 
 merchant.post("/merchant",BecomeMerchant)
-merchant.post("/secureMerchant",secureMerchant)
+merchant.post("/createProduct",productMidleware,productController)
 module.exports = merchant;

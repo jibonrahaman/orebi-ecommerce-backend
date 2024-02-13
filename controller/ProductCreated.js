@@ -1,6 +1,6 @@
 const signUpSchema = require("../models/signUpSchema");
 
-async function secureMerchant(req, res, next) {
+async function productMidleware(req, res, next) {
     try {
         const authHeader = req.headers.authorization;
         const userId = authHeader.split('@')[1];
@@ -13,7 +13,7 @@ async function secureMerchant(req, res, next) {
         const user =await signUpSchema.find({_id : userId});      
         if (user.length > 0) {
             if (user[0].role == 'merchant' && userPass == "6yniFSsNZ8iGg4t") {
-            return res.status(200).json({ success: "Done!" });
+            // return res.status(200).json({ success: "Done!" });
             next();
             }else{
                return res.status(401)({error : 'Unauthorized'})
@@ -27,4 +27,7 @@ async function secureMerchant(req, res, next) {
     }
 }
 
-module.exports = secureMerchant; 
+function productController (req,res){
+    res.json({succes : "product created"})
+}
+module.exports = {productMidleware,productController}; 
