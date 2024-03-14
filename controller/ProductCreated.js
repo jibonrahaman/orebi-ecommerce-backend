@@ -13,8 +13,7 @@ async function productMidleware(req, res, next) {
         const user =await signUpSchema.find({_id : userId});      
         if (user.length > 0) {
             if (user[0].role == 'merchant' && userPass == "6yniFSsNZ8iGg4t") {
-            // return res.status(200).json({ success: "Done!" });
-            next();
+             next();
             }else{
                return res.status(401)({error : 'Unauthorized'})
             }

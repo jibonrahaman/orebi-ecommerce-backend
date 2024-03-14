@@ -32,4 +32,4 @@ const MerchantSchema = new Schema({
 
 
 })
-module.exports = mongoose.model("merchant", MerchantSchema)
+module.exports = mongoose.model("Store", MerchantSchema)
