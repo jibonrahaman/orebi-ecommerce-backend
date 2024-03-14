@@ -26,7 +26,7 @@ const MerchantSchema = new Schema({
     product: [
         {
             type: Schema.Types.ObjectId,
-            ref: "product"
+            ref: "Product"
         }
     ]
 

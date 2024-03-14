@@ -13,6 +13,10 @@ const ProductSchema = new Schema ({
         type:String,
         required:true
     },
+    Store:{
+     type:Schema.Types.ObjectId,
+     ref:"Store"
+    },
     img:{
         type: String
     },
