@@ -35,8 +35,6 @@ function productController(req, res) {
             return res.status(400).json("please give ProductName")
         } else if (description == "" || !description) {
             return res.status(400).json("please give ProductDescription")
-        } else if (price == "" || !price) {
-            return res.status(400).json("please give ProductPrice")
         }
 
         const Products = new ProductSchema({

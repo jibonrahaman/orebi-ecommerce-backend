@@ -6,12 +6,13 @@ const ProductSchema = new Schema ({
         required:true
     },
     description : {
-        type:String,
-        required:true  
+        type:String
     },
-    price : {
-        type:String,
-        required:true
+    // price : {
+    //     type:String
+    // },
+    img:{
+        type:String
     },
     Variant:[
         {
