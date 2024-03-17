@@ -2,7 +2,8 @@ const VariantSchema = require ('../models/VariantSchema')
 const ProductSchema = require ('../models/ProductSchema')
 async function VariantController (req,res){
 try{
-    const {ram,storage,color,price,size,quantity,product} = req.body;
+    // console.log(req);
+    const {ram,storage,color,price,size,quantity,product,img} = req.body;
    if(price == " " || !price){
     return res.status(400).json("please give Variant Price")
    }else if(quantity == " " || !quantity){
