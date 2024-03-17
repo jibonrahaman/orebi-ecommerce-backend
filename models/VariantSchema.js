@@ -23,7 +23,7 @@ const VariantSchema = new Schema ({
     quantity :{
         type:String
     },
-    product:{
+    productId:{
         type:Schema.Types.ObjectId,
         ref:"Product"
     },
