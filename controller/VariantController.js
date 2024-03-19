@@ -18,13 +18,13 @@ async function VariantController(req, res) {
         const { ram, storage, color, price, size, quantity, productId, img } = req.body;
 
         // Check for required fields
-        //   if(price == " " || !price){
-        //     return res.status(400).json("please give Variant Price")
-        //    }else if(quantity == " " || !quantity){
-        //     return res.status(400).json("please give Variant Quantity")
-        //    }else if(productId == " " || !productId){
-        //     return res.status(400).json("please give  Product Id")
-        //    }
+          if(price == " " || !price){
+            return res.status(400).json("please give Variant Price")
+           }else if(quantity == " " || !quantity){
+            return res.status(400).json("please give Variant Quantity")
+           }else if(productId == " " || !productId){
+            return res.status(400).json("please give  Product Id")
+           }
           
          
         // Create new variant instance
@@ -36,7 +36,7 @@ async function VariantController(req, res) {
         // Update corresponding product with the new variant
         await ProductSchema.findOneAndUpdate(
             { _id: productId },
-            { $push: { variants: variant._id } },
+            { $push: { Variant: variant._id } },
             { new: true }
         );
         // Respond with success message and the created variant
