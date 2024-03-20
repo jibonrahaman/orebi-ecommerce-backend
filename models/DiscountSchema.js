@@ -19,10 +19,15 @@ const DiscountSchema = new Schema ({
         type:Schema.Types.ObjectId,
         ref:"CategoryList"
     },
-    subCategory:
+    SubCategoryId:
         {
            type:Schema.Types.ObjectId,
             ref:'SubCategoryList'
+        },
+        VariantId:
+        {
+           type:Schema.Types.ObjectId,
+            ref:'Variant'
         },
         created:{
             type:Date,
