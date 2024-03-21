@@ -9,8 +9,14 @@ const DiscountSchema = new Schema ({
         type:String
     },
     flat:{
-        type:String
+        type:Boolean,
+        default:false
     },
+    status: {
+        type: String,
+        default: "waiting",
+        enum: ['waiting', 'rejected', 'approved']
+     },
     ProductId:{
         type:Schema.Types.ObjectId,
         ref:"Product"
