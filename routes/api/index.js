@@ -12,4 +12,4 @@ const authDiscount = process.env.BASE_DISCOUNT_URL
  router.use(authCategory, Category);
  router.use(authMerchant,merchant);
  router.use(authDiscount,discount)
-module.exports=router;
+module.exports=router;  

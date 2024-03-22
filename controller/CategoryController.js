@@ -1,5 +1,5 @@
 const CategorySchema = require('../models/CategorySchema')
-async function CategoryController(req, res) {
+async function  CategoryController(req, res) {
     const { name, description } = req.body;
     try {
         const existingCategory = await CategorySchema.find({ name })
