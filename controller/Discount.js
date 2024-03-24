@@ -47,7 +47,7 @@ async function DiscountController(req, res) {
 
         // Create a new discount document
         const createDiscount = new DiscountSchema({ ...req.body });
-        await createDiscount.savee();
+        await createDiscount.save();
 
         // If status is "waiting" or "rejected", update flat field
         if (status === "waiting" || status === "rejected") {

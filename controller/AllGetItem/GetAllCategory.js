@@ -1,7 +1,8 @@
-const CategorySchema = require("../models/CategorySchema");
-const subCategorySchema = require("../models/subCategorySchema");
+const CategorySchema = require("../../models/CategorySchema");
+const subCategorySchema = require("../../models/subCategorySchema");
 
-async function getAllCategory(req, res) {
+
+async function GetAllCategory(req, res) {
     try {
         const getCategoryData = await CategorySchema.find({}).populate("subCategory")   
         const getAllSubCategory = await subCategorySchema.find({});
@@ -13,4 +14,4 @@ async function getAllCategory(req, res) {
     }
 }
 
-module.exports = getAllCategory;
+module.exports = GetAllCategory;
