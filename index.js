@@ -1,6 +1,8 @@
 const express =require("express");
 const app =express();
+const cors = require('cors')
 app.use(express.json())
+app.use(cors());
 const dbConnection = require("./dbConnection/dbConnect");
 const signUpSchema = require("./models/signUpSchema");
 require('dotenv').config()

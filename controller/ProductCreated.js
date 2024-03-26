@@ -1,5 +1,6 @@
 const ProductSchema = require("../models/ProductSchema");
 const signUpSchema = require("../models/signUpSchema");
+const BecomeMerchantSchema = require("../models/BecomeMerchantSchema");
 
 async function productMidleware(req, res, next) {
     try {
@@ -27,7 +28,7 @@ async function productMidleware(req, res, next) {
     }
 }
 
-function productController(req, res) {
+async function productController(req, res) {
 
     try {
         const { name, description, price, img, Store } = req.body
@@ -35,13 +36,20 @@ function productController(req, res) {
             return res.status(400).json("please give ProductName")
         } else if (description == "" || !description) {
             return res.status(400).json("please give ProductDescription")
+        }else if (Store == "" || !Store){
+            return res.status(400).json("Required Store id")
         }
 
         const Products = new ProductSchema({
             name, description, price, img, Store
         })
-        Products.save()
-        // Respond with success message or product details
+       
+        Products.save();
+        const BecomeMerchant = await BecomeMerchantSchema.findOneAndUpdate(
+            {_id:Store},
+             {$push:{product:Products._id}}, 
+             {new:true}
+        )
         res.status(201).json({ message: "Product created successfully", Products });
 
     } catch (error) {
