@@ -58,4 +58,8 @@ async function productController(req, res) {
 
 
 }
-module.exports = { productMidleware, productController }; 
+async function ProductDelete (req,res){
+
+}
+
+module.exports = { productMidleware, productController,ProductDelete}; 

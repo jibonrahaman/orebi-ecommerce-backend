@@ -9,4 +9,5 @@ merchant.post("/merchant",BecomeMerchant)
 merchant.post("/createProduct",productMidleware,productController)
 merchant.post ("/createVariant",upload.single("UploadImg"), VariantController)
 
+
 module.exports = merchant;
