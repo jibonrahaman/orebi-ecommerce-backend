@@ -6,7 +6,8 @@ const upload = require("../../midleware/Multer_Midleware");
 const merchant = express();
 
 merchant.post("/merchant",BecomeMerchant)
-merchant.post("/createProduct",productMidleware,productController)
+// merchant.post("/createProduct",productMidleware,productController)
+merchant.post("/createProduct",productController)
 merchant.post ("/createVariant",upload.single("UploadImg"), VariantController)
 
 
