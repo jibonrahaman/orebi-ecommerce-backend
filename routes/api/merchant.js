@@ -8,7 +8,7 @@ const merchant = express();
 merchant.post("/merchant",BecomeMerchant)
 // merchant.post("/createProduct",productMidleware,productController)
 merchant.post("/createProduct",productController)
-merchant.post ("/createVariant",upload.single("UploadImg"), VariantController)
+merchant.post ("/createVariant",upload.single("img"), VariantController)
 
 
 module.exports = merchant;

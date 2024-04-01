@@ -3,19 +3,19 @@ const ProductSchema = require('../models/ProductSchema');
 const UploadCloudinary = require('../utils/UploadCloudinary');
 
 async function VariantController(req, res) {
-    try {
-        
+    try {        
+        console.log(req.body);
          // Destructure the file path from the request
          const localPath = req.file.path; 
-        // Check if file is attached to the request
-        if (!localPath) {
-            return res.status(400).json("Please attach a file");
-        }
+         // Check if file is attached to the request
+         if (!localPath) {
+             return res.status(400).json("Please attach a file");
+            } 
         // Upload file to Cloudinary
-        const {url} = await UploadCloudinary(localPath); 
-           
+            const {url} = await UploadCloudinary(localPath); 
+                       
         // Destructure necessary fields from request body
-        const { ram, storage, color, price, size, quantity, productId, img } = req.body;
+        const { ram, storage, color, price, size, quantity, productId } = req.body;
 
         // Check for required fields
           if(price == " " || !price){
@@ -24,9 +24,8 @@ async function VariantController(req, res) {
             return res.status(400).json("please give Variant Quantity")
            }else if(productId == " " || !productId){
             return res.status(400).json("please give  Product Id")
-           }
-          
-         
+           } 
+                
         // Create new variant instance
         const variant = new VariantSchema({ ...req.body, img:url});
 

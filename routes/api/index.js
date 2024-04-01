@@ -18,4 +18,4 @@ const authAllDelete = process.env.BASE_ALLDELETE_URL
  router.use(authDiscount,discount);
  router.use(authAllGet,AllGet )
  router.use(authAllDelete,deleted)
-module.exports=router;  
+module.exports=router;   
