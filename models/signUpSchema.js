@@ -17,28 +17,22 @@ const signUpSchema = new Schema({
     },
     MobileNumber: {
         type: String,
-        required: true
     },
-    PresentAdress: {
-        type: String,
-        required: true
-    },
-    City: {
-        type: String,
-        required: true
-    },
-    PostCode: {
-        type: String,
-        required: true
-    },
-    Country: {
-        type: String,
-        required: true
-    },
-    Region: {
-        type: String,
-        required: true
-    },
+    // PresentAdress: {
+    //     type: String,
+    // },
+    // City: {
+    //     type: String,
+    // },
+    // PostCode: {
+    //     type: String,
+    // },
+    // Country: {
+    //     type: String,
+    // },
+    // Region: {
+    //     type: String,
+    // },
     Password: {
         type: String,
         required: true

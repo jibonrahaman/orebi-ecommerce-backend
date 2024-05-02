@@ -1,4 +1,4 @@
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const userList = require('../models/signUpSchema');
 async function emailVeryfied (req,res){
   const {authorization} =req.headers

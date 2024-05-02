@@ -11,42 +11,42 @@ async function signup(req, res) {
     try {
         // Validation
         if (Firstname == " " || !Firstname){
-         return res.send("Firstname required")
+         return   res.send({error: "Firstname required"})
       }
       if (LastName == " " || !LastName){
-         return res.json("Lastname required")
+         return    res.send({ error: "Lastname is required" })
       }
       
      if (!Email){
-         return  res.status(400).json("Email is required")
+         return    res.send({ error: "Email is required" })
       }
       if (!emailRegex(Email)){
-         return  res.status(400).json ("Email is not correct")
+         return    res.send({ error: "Email is not correct" })
       }
      if (!MobileNumber){
-         return  res.status(400).json("MobileNumber is required")
+         return    res.send({ error: "MobileNumber is required" })
       }
-     if (!PresentAdress){
-         return  res.status(400).json("PresentAdress is required")
-      } 
-       if (!City){
-         return  res.status(400).json("City is required")
-      }
-      if (!PostCode){
-         return  res.status(400).json("PresentAdress is required")
-      }
-      if (!Country){
-         return  res.status(400).json("Country is required")
-      }
-       if (!Region){
-         return  res.status(400).json("Region is required")
-      }
+   //   if (!PresentAdress){
+   //       return  res.status(400).json("PresentAdress is required")
+   //    } 
+      //  if (!City){
+      //    return  res.status(400).json("City is required")
+      // }
+      // if (!PostCode){
+      //    return  res.status(400).json("PresentAdress is required")
+      // }
+      // if (!Country){
+      //    return  res.status(400).json("Country is required")
+      // }
+      //  if (!Region){
+      //    return  res.status(400).json("Region is required")
+      // }
        if (!Password){
-         return  res.status(400).json("Password is required")
+         return    res.send({ error: "Password is required" })
       }   
       const existEmail = await signUpSchema.findOne({Email})
       if (existEmail){
-         return  res.status(400).json("email is already used")
+         return    res.send({ error: "Email is already used" })
       }
 
       bcrypt.hash(Password, 10, function(err, hash) {
@@ -58,14 +58,14 @@ async function signup(req, res) {
              PresentAdress,
              City,
              PostCode,
-             Country,
+             Country, 
              Region,
              Password:hash
          })
          var token = jwt.sign({ Email }, "suhashine");
          SendEmailVerify(Email, emailVeryfiedTemplete(token))
          signUpData.save();
-         res.send(signUpData)
+         res.send({success: "Registration is succesfully"})
      });    
 
     } catch (error) {
