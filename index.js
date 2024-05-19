@@ -1,18 +1,26 @@
-const express =require("express");
-const app =express();
-const cors = require('cors')
-app.use(express.json())
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const path = require('path');
+require('dotenv').config();
+
+// Middleware
+app.use(express.json());
 app.use(cors());
-const dbConnection = require("./dbConnection/dbConnect");
-const signUpSchema = require("./models/signUpSchema");
-require('dotenv').config()
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Database connection
+const dbConnection = require('./dbConnection/dbConnect');
 dbConnection();
-const router = require("./routes");
-app.use(router)
+
+
+// Routes
+const router = require('./routes');
+app.use(router);
 const port =7000;
 
-// Serving static html files in Express
-const path = require('path')
+// Static files
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')))
 
 app.listen(port,()=>{

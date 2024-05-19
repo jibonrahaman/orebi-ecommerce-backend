@@ -1,33 +1,37 @@
- const userList =require ('../models/signUpSchema')
+ const userList =require ('../models/signUpSchema');
+ const bcrypt= require("bcrypt");
+const emailRegex = require('../emailRegex/emailRegex');
+const signUpSchema = require('../models/signUpSchema');
 async function login(req,res){
- const {Email,Password} = req.body;
+ const {Email,Password} = req.body; 
  try{
-     const userData = await userList.findOne({Email})
-     if(userData){     
-        console.log(userData.Email);
-        if(userData.Email == Email){
-            res.json({message:"Login successfull"})
-         }
-         else{
-            // Email not match 
-            res.status(401).json({error: "Invalid Email"})
-         }
-
-        
-        // if(userData.Password == Password){
-        // res.json({ message: "Login successful" });
-        // }
-        // else {
-        //     // Password doesn't match
-        //     res.status(401).json({ error: "Invalid password" });
-        // }
-
-     }
-     else {
-        // User not found
-        res.status(404).json({ error: "User not found" });
-    }
-
+   const existEmail = await signUpSchema.find({Email}) 
+         
+   if(!Email){
+      return res.send({error : "Email is required"})
+   }else if(!existEmail){
+      return res.send({error : "Email is not match"})
+    }else if (!emailRegex(Email)){
+      return res.send({error : "Email is not correct"})
+   }else if (!Password){
+      return res.send({error : "Password is required"})
+   }else{
+      const userData = await userList.find({Email})
+      if(userData.length > 0){
+        bcrypt.compare(Password, userData[0].Password).then(function(result){
+          if(result){
+           res.send({success : "Login Successfully",
+           email:existEmail[0].Email,
+           role: existEmail[0].role
+         })
+          }else{
+           res.send({error : "Password is not valid"})
+          }
+        })
+  
+       }  
+       }
+    
  }
  catch(error){
     console.log("Error during login:", error);

@@ -28,7 +28,7 @@ async function VariantController(req, res) {
                 
         // Create new variant instance
         const variant = new VariantSchema({ ...req.body, img:url});
-
+ 
         // Save variant to the database
         await variant.save();
   

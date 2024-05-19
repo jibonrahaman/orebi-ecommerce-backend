@@ -11,19 +11,22 @@ async function SubCategoryStatus (req,res){
              {new:true}
              
          )
-         res.json(updateSubCategoryStatus)
+          // Respond with the updated subcategory status
+          res.json(updateSubCategoryStatus)
+        
      }else if (status == "approved"){
          const updateSubCategoryStatus = await subCategorySchema.findOneAndUpdate(
              {name},
              {$set:{isActive:true,status:status}},
              {new:true}
-             )       
+             )  
+              // Respond with the updated subcategory status
+              res.json(updateSubCategoryStatus)     
          }else {
             // Handle invalid status
             return res.status(400).json({ error: 'Invalid status' });
           }
-              // Respond with the updated subcategory status
-              res.json(updateSubCategoryStatus)
+             
      }catch(error){
         // Handle any errors that occur during the process
     console.error(error);
