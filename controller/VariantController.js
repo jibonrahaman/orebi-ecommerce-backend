@@ -23,7 +23,7 @@ async function VariantController(req, res) {
            }else if(quantity == " " || !quantity){
             return res.status(400).json("please give Variant Quantity")
            }else if(productId == " " || !productId){
-            return res.status(400).json("please give  Product Id")
+            return res.status(400).json("please give  Product Name")
            } 
                 
         // Create new variant instance

@@ -1,4 +1,3 @@
-
 const ProductSchema = require("../../models/ProductSchema");
 
 async function productDelete(req, res) {
@@ -12,5 +11,11 @@ async function productDelete(req, res) {
         res.status(500).json({ error: "Internal server error" });
     }
 }
-
 module.exports = productDelete;
+
+
+
+function variantDelete (req,res){
+
+}
+module.exports = variantDelete;

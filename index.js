@@ -19,7 +19,7 @@ dbConnection();
 const router = require('./routes');
 app.use(router);
 const port =7000;
-
+ 
 // Static files
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')))
 
