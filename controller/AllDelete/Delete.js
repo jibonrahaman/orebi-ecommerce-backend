@@ -1,4 +1,5 @@
 const ProductSchema = require("../../models/ProductSchema");
+const VariantSchema = require("../../models/VariantSchema");
 
 async function productDelete(req, res) {
     try {
@@ -11,11 +12,9 @@ async function productDelete(req, res) {
         res.status(500).json({ error: "Internal server error" });
     }
 }
-module.exports = productDelete;
 
 
-
-function variantDelete (req,res){
-
+async function variantDelete (req,res){
+const deletedVariant = await VariantSchema.findByIdAndDelete(req.body.id)
 }
-module.exports = variantDelete;
+module.exports = {productDelete,variantDelete};
